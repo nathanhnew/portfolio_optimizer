@@ -186,11 +186,10 @@ if __name__ == "__main__":
 		# Uncomment this for calculation of portfolios with maximum sharpe ratio
 		max_sharpe, min_vol = Optimizer(_SECURITIES, _SERVICE, **_OPTIONS).moneCarlo(_SIMS, _N)
 		print('Min Vol:\n' + str(min_vol))
-		print('Max Sharpe:\n' + str(max_sharpe)
-
+		print('Max Sharpe:\n' + str(max_sharpe))
 
 		# Uncomment Below to calculate sharpe ratio of known weighted assets
 		# sharpe = Optimizer(_SECURITIES, _SERVICE, **_OPTIONS).getSharpe(_WEIGHTS)
-		# print(sharpe)		
+		# print(sharpe)
 	except Exception as e:
 		print(e)
