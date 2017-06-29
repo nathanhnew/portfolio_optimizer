@@ -6,7 +6,7 @@ from WebStockReader import WebReader as web
 
 
 # List of securities to analyze
-_SECURITIES = ['voe', 'vnq', 'vb', 'vgk']
+_SECURITIES = ['fb', 'amzn', 'nflx', 'googl']
 
 # Change service used to get data (yahoo, google, etc.). TIINGO only currently available
 _SERVICE = 'tiingo'
@@ -23,7 +23,7 @@ Options
 'rfr' - define the Risk Free Rate (for calculation of Sharpe ratio). DEFAULT: 0
 '''
 options = {
-	'key': '85d33843a4bd0bffe1bab0beb9de8bd4e0eca039',
+	'key': '',
 	'start': datetime.datetime(2009, 3, 5),
 	'end': datetime.datetime.now(),
 	'log': True,

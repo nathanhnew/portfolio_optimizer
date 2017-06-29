@@ -35,9 +35,9 @@ class WebReader(object):
 		We ensure that the 'key' parameter is provided in the call for
 		these services
 		'''
-		if service.lower() in self.key_required and 'key' not in kwargs:
+		if service.lower() in self.key_required and 'key' not in kwargs or len(kwargs['key']) == 0:
 			raise KeyError('Must include API key for %s' % service.upper())
-		elif 'key' in kwargs:
+		elif 'key' in kwargs and len(key) > 0:
 			self.key = kwargs['key']
 
 		'''
