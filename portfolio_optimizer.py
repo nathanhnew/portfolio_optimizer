@@ -12,20 +12,20 @@ _SECURITIES = ['fb', 'amzn', 'nflx', 'googl']
 _SERVICE = 'tiingo'
 
 '''
-Options for API call. If your selected service requires an API key for authentication,
-this parameter must be provided here. To set an option to default simply comment it out or delete
-it from the dictionary.
-Options
-'key' - API authentication key (required for Tiingo, Quandl, etc.)
-'start' - date to begin analysis. DEFAULT: Jan 1, 2010
-'end' - date to end analysis. DEFAULT: today
-'log' - use log returns if true, otherwise simple returns DEFAULT: False
-'rfr' - define the Risk Free Rate (for calculation of Sharpe ratio). DEFAULT: 0
+# Options for API call. If your selected service requires an API key for authentication,
+# this parameter must be provided here. To set an option to default simply comment it out or delete
+# it from the dictionary.
+# Options
+# 'key' - API authentication key (required for Tiingo, Quandl, etc.)
+# 'start' - date to begin analysis. DEFAULT: Jan 1, 2010
+# 'end' - date to end analysis. DEFAULT: today
+# 'log' - use log returns if true, otherwise simple returns DEFAULT: False
+# 'rfr' - define the Risk Free Rate (for calculation of Sharpe ratio). DEFAULT: 0
 '''
 options = {
 	'key': '',
-	'start': datetime.datetime(2009, 3, 5),
-	'end': datetime.datetime.now(),
+	# 'start': datetime.datetime(2009, 3, 5),
+	# 'end': datetime.datetime.now(),
 	'log': True,
 
 }
