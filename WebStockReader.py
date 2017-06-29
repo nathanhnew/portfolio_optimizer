@@ -37,7 +37,7 @@ class WebReader(object):
 		'''
 		if service.lower() in self.key_required and 'key' not in kwargs or len(kwargs['key']) == 0:
 			raise KeyError('Must include API key for %s' % service.upper())
-		elif 'key' in kwargs and len(key) > 0:
+		elif 'key' in kwargs and len(kwargs['key']) > 0:
 			self.key = kwargs['key']
 
 		'''
@@ -75,9 +75,6 @@ class WebReader(object):
 		Function called for tiingo api
 		'''
 
-		# Base URL for tiingo API support
-		url = 'https://api.tiingo.com/tiingo/daily/'
-
 		'''
 		JSON data loaded from the server will be stored in this dictionary for each
 		security passed into the function
@@ -90,15 +87,16 @@ class WebReader(object):
 			if not isinstance(val, str):
 				raise ValueError("Unknown type for stock at index %d. '%s' Must be string or list of strings" % (index, val))
 
+			# Base URL for tiingo API support
+			url = 'https://api.tiingo.com/tiingo/daily/'
 			# Pass parameters into url to build proper API request
-			url += '%s/prices?token=%s&startDate=%s&endDate=%s' % (val, self.key, self.start, self.end)
-
+			url += '%s/prices?token=%s&startDate=%s&endDate=%s' % (val.lower(), self.key, self.start, self.end)
+			
 			# Use Pandas default 'fron json' function to make the api call. must manually set the index to date
 			urlData = pd.read_json(url, orient='records').set_index('date')
 
-			# Append the security and resulting DataFrame to the dictionary
+			# Append the asset and resulting DataFrame to the dictionary
 			pandas_data_dict[val] = urlData
-
 		'''
 		Pandas has deprecated the 'Panel' object and therefore for future functionality, the dictionary
 		of dataframes must be converted to a multiindexed dataframe. Pandas can easily convert this after defining
@@ -125,9 +123,9 @@ class WebReader(object):
 
 if __name__ == "__main__":
 	# stocklist = 'googl'
-	stocklist = ['aapl', 'amzn']
+	stocklist = ['dpz', 'vg', 'voe', 'vgk', 'vnq']
 	try:
 		data = WebReader().get(stocklist, 'tiingo', key='85d33843a4bd0bffe1bab0beb9de8bd4e0eca039')['adjClose']
-		print(data)
+		# print(data)
 	except Exception as e:
 		print(e)
