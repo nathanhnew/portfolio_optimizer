@@ -7,7 +7,7 @@ from WebStockReader import WebReader as web
 
 
 # List of securities to analyze
-_SECURITIES = ['fb', 'aapl', 'nflx', 'googl']
+_SECURITIES = ['fb', 'aapl', 'amzn', 'nflx', 'googl']
 
 # Change service used to get data (yahoo, google, etc.). TIINGO only currently available
 _SERVICE = 'tiingo'
@@ -33,7 +33,7 @@ _OPTIONS = {
 }
 
 # Number of iterations if using Monte Carlo. Default 10,000
-_SIMS = 10000
+_SIMS = 100000
 
 # Number of maximized solutions to return (i.e. 10 largest sharpe ratio weights)
 _N = 0
@@ -140,7 +140,7 @@ class Optimizer(object):
 			min_vol = resultFrame.nsmallest(n, 'StdDev')
 		else:
 			max_sharpe = resultFrame.iloc[resultFrame['Sharpe'].idxmax()]
-			min_vol = resultFrame.iloc[resultFrame['Sharpe'].idxmin()]
+			min_vol = resultFrame.iloc[resultFrame['StdDev'].idxmin()]
 
 		# Return the Pandas Series for maximized sharpe ratio and minimized volatility
 		return max_sharpe, min_vol
